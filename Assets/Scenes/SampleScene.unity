@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baede700b0ec6524ea2e0530008058d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startWaypoint: {fileID: 5553389440689261414}
+  startWaypoint: {fileID: 982210129}
   endWaypoint: {fileID: 748272389}
 --- !u!1001 &1708461870
 PrefabInstance:
@@ -2042,6 +2042,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075029844092485847, guid: cd54075cad2a8cd43bc6d453588a4f48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7223379117241121802, guid: cd54075cad2a8cd43bc6d453588a4f48,
         type: 3}
