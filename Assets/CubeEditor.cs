@@ -5,7 +5,7 @@ using UnityEngine;
 //This code runs even when the games isn't in "play mode"
 [ExecuteInEditMode]
 
-//When you click and object with this on it, it will be the selection base
+//When you click an object with this on it, it will be the selection base
 [SelectionBase]
 [RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
@@ -35,7 +35,6 @@ public class CubeEditor : MonoBehaviour
     //Causes the textmesh on each block to be relivant against the block's position
     private void UpdateLabel()
     {
-        int gridSize = waypoint.GetGridSize();
         TextMesh textMesh = GetComponentInChildren<TextMesh>(); //Searches the gameobject and its children for a textmesh
         string spot = waypoint.GetGridPos().x + ", " + waypoint.GetGridPos().y;
         textMesh.text = spot;

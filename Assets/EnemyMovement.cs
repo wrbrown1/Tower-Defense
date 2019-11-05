@@ -5,22 +5,24 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    //Specify a path in the Unity editor
-    [SerializeField] List<Waypoint> path;
 
     void Start()
     {
-        StartCoroutine(FollowPath());
+        Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
+        var path = pathfinder.GetPath();
+        StartCoroutine(FollowPath(path));
     }
 
     //IEnumerator will be covered later - makes the enemy follow the path specified in the Unity editor
-    IEnumerator FollowPath()
+    IEnumerator FollowPath(List<Waypoint> path)
     {
+        print("Starting patrol...");
         foreach (Waypoint waypoint in path)
         {
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(1f);
         }
+        print("Ending patrol.");
     }
 
 }

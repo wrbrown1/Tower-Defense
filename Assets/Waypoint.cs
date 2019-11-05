@@ -5,6 +5,8 @@ using UnityEngine;
 public class Waypoint : MonoBehaviour
 {
 
+    public bool isExplored = false;
+    public Waypoint exploredFrom;
     //How far appart each grid peice is from one another
     const int gridSize = 10;
 
