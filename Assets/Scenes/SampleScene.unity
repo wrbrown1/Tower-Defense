@@ -1490,8 +1490,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baede700b0ec6524ea2e0530008058d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startWaypoint: {fileID: 982210129}
-  endWaypoint: {fileID: 748272389}
+  startWaypoint: {fileID: 5553389440689261414}
+  endWaypoint: {fileID: 5553389440689261414}
+  directions:
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}
+  - {x: 0, y: -1}
+  - {x: -1, y: 0}
 --- !u!1001 &1708461870
 PrefabInstance:
   m_ObjectHideFlags: 0

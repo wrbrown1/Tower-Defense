@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
+    //Specify a path in the Unity editor
     [SerializeField] List<Waypoint> path;
 
     void Start()
@@ -12,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(FollowPath());
     }
 
+    //IEnumerator will be covered later - makes the enemy follow the path specified in the Unity editor
     IEnumerator FollowPath()
     {
         foreach (Waypoint waypoint in path)
@@ -21,8 +23,4 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
 }
