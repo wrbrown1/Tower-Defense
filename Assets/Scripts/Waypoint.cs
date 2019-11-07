@@ -29,9 +29,9 @@ public class Waypoint : MonoBehaviour
     }
 
     //Allows waypoint object to change colors
-    public void SetSurfaceColor(Color color)
-    {
-        MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = color;
-    }
+    //public void SetSurfaceColor(Color color)
+    //{
+    //    MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
+    //    topMeshRenderer.material.color = color;
+    //}
 }

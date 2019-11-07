@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMesh: {fileID: 2113387343}
-  health: 20
+  health: 30
 --- !u!65 &2113387343
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
         while(true)
         {
             GameObject newEnemy = Instantiate(enemy, spawnLocation, Quaternion.identity);
+            enemy = newEnemy;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }       
     }

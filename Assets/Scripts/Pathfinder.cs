@@ -95,7 +95,7 @@ public class Pathfinder : MonoBehaviour
         if (!pathFound)
         {
             LoadBlocks();
-            ColorStartAndEnd();
+            //ColorStartAndEnd();
             BreadthFirstSearch();
             CreatePath();
         }
@@ -103,11 +103,11 @@ public class Pathfinder : MonoBehaviour
     }
 
         //Simple method to identify the start and end points in the Unity editor
-    void ColorStartAndEnd()
-    {
-        startWaypoint.SetSurfaceColor(Color.green);
-        endWaypoint.SetSurfaceColor(Color.red);
-    }
+    //void ColorStartAndEnd()
+    //{
+    //    startWaypoint.SetSurfaceColor(Color.green);
+    //    endWaypoint.SetSurfaceColor(Color.red);
+    //}
 
         //Populates the dictionary with all blocks currently on the grid
     private void LoadBlocks()
@@ -123,7 +123,7 @@ public class Pathfinder : MonoBehaviour
             else
             {
                 grid.Add(waypoint.GetGridPos(), waypoint);
-                waypoint.SetSurfaceColor(Color.black);
+                //waypoint.SetSurfaceColor(Color.black);
             }
         }
     }

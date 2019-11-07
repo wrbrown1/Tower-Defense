@@ -17,12 +17,7 @@ public class EnemyDamage : MonoBehaviour
 
     private void Update()
     {
-        CheckDistance();
-    }
-
-    private void CheckDistance()
-    {
-        Vector3 distance;
+        
     }
 
     private void OnParticleCollision(GameObject other)
@@ -32,7 +27,7 @@ public class EnemyDamage : MonoBehaviour
 
     private void ProcessHit()
     {
-        health = health - 10;
+        health = health - 5;
         if (health <= 0)
         {
             Destroy(gameObject, 1f);
