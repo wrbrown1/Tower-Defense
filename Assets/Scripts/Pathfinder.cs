@@ -8,6 +8,7 @@ public class Pathfinder : MonoBehaviour
 {
 
     List<Waypoint> path = new List<Waypoint>();
+    bool pathFound = false;
     Waypoint searchCenter;
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     [SerializeField] Waypoint startWaypoint, endWaypoint;
@@ -35,6 +36,7 @@ public class Pathfinder : MonoBehaviour
         }
         path.Add(startWaypoint);
         path.Reverse();
+        pathFound = true;
     }
 
     //Algorithm for finding a path from start to finish (Breadth first search)
@@ -55,7 +57,6 @@ public class Pathfinder : MonoBehaviour
     {
         if (searchCenter == endWaypoint)
         {
-            print("Pathfinding has finished.");
             isRunning = false;
         }
     }
@@ -91,10 +92,13 @@ public class Pathfinder : MonoBehaviour
 
     public List<Waypoint> GetPath()
     {
-        LoadBlocks();
-        ColorStartAndEnd();
-        BreadthFirstSearch();
-        CreatePath();
+        if (!pathFound)
+        {
+            LoadBlocks();
+            ColorStartAndEnd();
+            BreadthFirstSearch();
+            CreatePath();
+        }
         return path;
     }
 
