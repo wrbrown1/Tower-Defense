@@ -7,12 +7,11 @@ public class EnemyDamage : MonoBehaviour
 {
 
     [SerializeField] Collider collisionMesh;
-    [SerializeField] int health;
-    
+    public int health;
 
     private void Awake()
     {
-        
+        EnemySpawner enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
     }
 
     private void Update()
@@ -22,15 +21,16 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        
         ProcessHit();
     }
 
     private void ProcessHit()
     {
-        health = health - 5;
+        health = health - 1;
         if (health <= 0)
         {
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
         }
     }
 }

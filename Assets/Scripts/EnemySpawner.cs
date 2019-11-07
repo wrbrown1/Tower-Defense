@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] float secondsBetweenSpawns = 2f;
-    [SerializeField] GameObject enemy;
+    [SerializeField] EnemyDamage enemy;
+    [SerializeField] Transform enemyParentTransform;
     Vector3 spawnLocation = new Vector3(0f, 0f, 0f);
+    public List<EnemyDamage> enemies = new List<EnemyDamage>();
 
     void Start()
     {
@@ -17,8 +19,9 @@ public class EnemySpawner : MonoBehaviour
     {
         while(true)
         {
-            GameObject newEnemy = Instantiate(enemy, spawnLocation, Quaternion.identity);
-            enemy = newEnemy;
+            EnemyDamage newEnemy = Instantiate(enemy, spawnLocation, Quaternion.identity);
+            newEnemy.transform.parent = enemyParentTransform;
+            enemies.Add(newEnemy);
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }       
     }
