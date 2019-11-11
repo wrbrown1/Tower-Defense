@@ -11,6 +11,12 @@ public class Waypoint : MonoBehaviour
     Vector2Int gridPos;
     public bool isPlaceable = true;
     bool hasTower = false;
+    TowerFactory towerFactory;
+
+    private void Start()
+    {
+        towerFactory = GameObject.FindObjectOfType<TowerFactory>();
+    }
 
     public int GetGridSize()
     {
@@ -29,8 +35,22 @@ public class Waypoint : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isPlaceable && !hasTower)
         {
+            PlaceTower();
+        }
+    }
+
+    private void PlaceTower()
+    {
+        if (towerFactory.towersPlaced < towerFactory.maxTowers)
+        {
             hasTower = true;
-            Tower newTower = Instantiate(tower, transform.position, Quaternion.identity);
+            Tower newTower = towerFactory.CreateTower(transform.position);
+            newTower.SetWaypoint(this);
+            towerFactory.towersPlaced++;
+        }
+        else
+        {
+            print("Max towers placed.");
         }
     }
 }

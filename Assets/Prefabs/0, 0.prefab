@@ -234,6 +234,7 @@ MonoBehaviour:
   isExplored: 0
   exploredFrom: {fileID: 0}
   isPlaceable: 1
+  towerFactory: {fileID: 0}
 --- !u!65 &251886995226379591
 BoxCollider:
   m_ObjectHideFlags: 0

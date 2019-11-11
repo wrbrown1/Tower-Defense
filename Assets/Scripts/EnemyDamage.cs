@@ -11,6 +11,7 @@ public class EnemyDamage : MonoBehaviour
     public int health;
     bool lowHealth = false;
 
+
     private void Awake()
     {
         EnemySpawner enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
