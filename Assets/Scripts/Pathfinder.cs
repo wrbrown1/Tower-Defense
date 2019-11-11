@@ -14,8 +14,6 @@ public class Pathfinder : MonoBehaviour
     [SerializeField] Waypoint startWaypoint, endWaypoint;
     Queue<Waypoint> queue = new Queue<Waypoint>();
     bool isRunning = true;
-
-        //Array of coordinates that can be referenced for the purpose of movement
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -26,20 +24,24 @@ public class Pathfinder : MonoBehaviour
 
     private void CreatePath()
     {
-        path.Add(endWaypoint);
-
+        SetAsPath(endWaypoint);
         Waypoint previous = endWaypoint.exploredFrom;
-        while(previous != startWaypoint)
+        while (previous != startWaypoint)
         {
-            path.Add(previous);
+            SetAsPath(previous);
             previous = previous.exploredFrom;
         }
-        path.Add(startWaypoint);
+        SetAsPath(startWaypoint);
         path.Reverse();
         pathFound = true;
     }
 
-    //Algorithm for finding a path from start to finish (Breadth first search)
+    private void SetAsPath(Waypoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.isPlaceable = false;
+    }
+
     private void BreadthFirstSearch()
     {
         queue.Enqueue(startWaypoint);
@@ -52,7 +54,6 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-        //Compare the current search location to the endpoint - if they are the same, stop running
     private void CheckIfArrived()
     {
         if (searchCenter == endWaypoint)
@@ -61,7 +62,6 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-        //Sets the color of the blocks adjacent to the start position to blue
     private void ExploreNeighbours()
     {
         if (!isRunning) { return; }
@@ -75,7 +75,6 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-        //Method to queue neighbours that haven't been explored
     private void QueueNewNeighbors(Vector2Int explorationCoordinates)
     {
         Waypoint neighbour = grid[explorationCoordinates];
@@ -95,21 +94,12 @@ public class Pathfinder : MonoBehaviour
         if (!pathFound)
         {
             LoadBlocks();
-            //ColorStartAndEnd();
             BreadthFirstSearch();
             CreatePath();
         }
         return path;
     }
 
-        //Simple method to identify the start and end points in the Unity editor
-    //void ColorStartAndEnd()
-    //{
-    //    startWaypoint.SetSurfaceColor(Color.green);
-    //    endWaypoint.SetSurfaceColor(Color.red);
-    //}
-
-        //Populates the dictionary with all blocks currently on the grid
     private void LoadBlocks()
     {
         var waypoints = FindObjectsOfType<Waypoint>(); //Finds EVERY active object of the type specified that is currently loaded
@@ -123,7 +113,6 @@ public class Pathfinder : MonoBehaviour
             else
             {
                 grid.Add(waypoint.GetGridPos(), waypoint);
-                //waypoint.SetSurfaceColor(Color.black);
             }
         }
     }

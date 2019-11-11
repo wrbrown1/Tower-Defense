@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-
+    [SerializeField] Tower tower;
     public bool isExplored = false;
     public Waypoint exploredFrom;
-    //How far appart each grid peice is from one another
     const int gridSize = 10;
-
-    //Grid coordinates
     Vector2Int gridPos;
+    public bool isPlaceable = true;
+    bool hasTower = false;
 
-    //Method allows the grid size to be used but not changed outside of this script
     public int GetGridSize()
     {
         return gridSize;
     }
 
-    //Method allows the coordinates of the block to be used but not changed outside of this script
     public Vector2Int GetGridPos()
     {
         return new Vector2Int(
@@ -28,10 +25,12 @@ public class Waypoint : MonoBehaviour
             );
     }
 
-    //Allows waypoint object to change colors
-    //public void SetSurfaceColor(Color color)
-    //{
-    //    MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-    //    topMeshRenderer.material.color = color;
-    //}
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0) && isPlaceable && !hasTower)
+        {
+            hasTower = true;
+            Tower newTower = Instantiate(tower, transform.position, Quaternion.identity);
+        }
+    }
 }

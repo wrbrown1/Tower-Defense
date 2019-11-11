@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-
-    [SerializeField] Collider collisionMesh;
+    [SerializeField] ParticleSystem damageEffect;
+    [SerializeField] ParticleSystem lowHealthEffect;
+    [SerializeField] ParticleSystem deathEffect;
     public int health;
+    bool lowHealth = false;
 
     private void Awake()
     {
@@ -16,12 +18,32 @@ public class EnemyDamage : MonoBehaviour
 
     private void Update()
     {
-        
+
+    }
+
+    private void CheckHealth()
+    {
+        if(health < 10)
+        {
+            lowHealth = true;
+            StartSparking();
+        }
+        else
+        {
+            lowHealth = false;
+        }
+    }
+
+    private void StartSparking()
+    {
+        var emissionModule = lowHealthEffect.emission;
+        emissionModule.enabled = true;   
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        
+        CheckHealth();
+        ShowDamageEffect();
         ProcessHit();
     }
 
@@ -30,7 +52,13 @@ public class EnemyDamage : MonoBehaviour
         health = health - 1;
         if (health <= 0)
         {
+            Instantiate(deathEffect, transform.position + new Vector3(0, 5, 0), Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+
+    private void ShowDamageEffect()
+    {
+        Instantiate(damageEffect, transform.position + new Vector3(0, 5, 0), Quaternion.identity);
     }
 }
